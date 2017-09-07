@@ -49,6 +49,12 @@ request
     }
 });
 ```
+
+Here is what it looks like
+
+![screenshot](./gfx/screenshot.png)
+
+
 ## How to execute it inside express-gateway
 
 Here is my gateway.config.yml
