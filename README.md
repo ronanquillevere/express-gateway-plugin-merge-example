@@ -70,7 +70,7 @@ exports.mergeQuotes = function (chuckQuote, numberQuote){
 
 Here is what it looks like
 
-![screenshot](./gfx/screenshot.png)
+![screenshot](./gfx/screenshot-ui.png)
 
 
 ## How to execute it inside express-gateway
