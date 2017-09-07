@@ -1,4 +1,5 @@
 const request = require('superagent');
+const logic = require('./policy-logic.js');
 
 module.exports = {
     name: 'merge-example',
@@ -6,9 +7,6 @@ module.exports = {
         return (req, res, next) => {
             // eslint-disable-next-line no-console
             console.log('executing policy of merge-example plugin', actionParams);
-
-            let quote1 = '';
-            let quote2 = '';
 
             request
             .get('http://api.chucknorris.io/jokes/random')
@@ -18,10 +16,6 @@ module.exports = {
                     console.error(`problem with request1: ${err}`);
                     next();
                 } else {
-                    quote1 = r.body.value;
-                    console.log(`quote1: ${quote1}`);
-                    console.log(`url2: http://numbersapi.com/${quote1.length}`);
-
                     request
                     .get(`http://numbersapi.com/${quote1.length}`)
                     .set('Content-Type', 'application/json')
@@ -30,10 +24,7 @@ module.exports = {
                             console.error(`problem with request2: ${err}`);
                             next();
                         } else {
-                            console.log(`body2: ${r2.body}`);
-                            quote2 = r2.body.text;
-
-                            res.send({quote1 : quote1, quote2: quote2});
+                            res.send(logic.mergeQuotes(r,r2));
                         }
                     });
                 }
