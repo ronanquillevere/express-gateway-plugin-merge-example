@@ -1,0 +1,15 @@
+{
+  "name": "express-gateway-plugin-merge-example",
+  "version": "0.0.10",
+  "description": "Custom policy to merge 2 api calls",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "superagent": "^3.6.0"
+  },
+  "devDependencies": {}
+}
