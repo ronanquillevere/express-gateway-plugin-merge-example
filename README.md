@@ -11,7 +11,7 @@ Note that my intention was just to test the plugin system of express-gateway, no
 - Call http://numbersapi.com/{number} passing the length of the first quote as the number path param
 - Extract the `text` field of the response body
 - Return javascript object with the 2 quotes to caller, does not call next(), with following format
-`{quote1 : quote1, quote2: quote2}`
+`{chuckQuote : quote1, numberQuote: quote2}`
 
 
 policy code
