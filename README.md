@@ -17,9 +17,6 @@ Note that my intention was just to test the plugin system of express-gateway, no
 policy code
 
 ```javascript
-let quote1 = '';
-let quote2 = '';
-
 request
 .get('http://api.chucknorris.io/jokes/random')
 .set('Content-Type', 'application/json')
@@ -28,26 +25,47 @@ request
         console.error(`problem with request1: ${err}`);
         next();
     } else {
-        quote1 = r.body.value;
-        console.log(`quote1: ${quote1}`);
-        console.log(`url2: http://numbersapi.com/${quote1.length}`);
+        let chuckQuote = logic.extractChuckQuote(r);
 
         request
-        .get(`http://numbersapi.com/${quote1.length}`)
+        .get(`http://numbersapi.com/${chuckQuote.length}`)
         .set('Content-Type', 'application/json')
         .end((err, r2) => {
             if (err || !r2.ok) {
                 console.error(`problem with request2: ${err}`);
                 next();
             } else {
-                console.log(`body2: ${r2.body}`);
-                quote2 = r2.body.text;
-
-                res.send({quote1 : quote1, quote2: quote2});
+                let numberQuote = logic.extractNumberQuote(r2);
+                res.send(logic.mergeQuotes(chuckQuote,numberQuote));
             }
         });
     }
 });
+
+
+//policy-logic.js
+exports.extractChuckQuote = function (response) {
+    if (!response || !response.body || !response.body.value){
+        throw new Error ('Cannot extract Chuck Norris quote ');
+    }
+    return response.body.value;
+};
+
+exports.extractNumberQuote = function (response) {
+    if (!response || !response.body || !response.body.text){
+        throw new Error ('Cannot extract number quote ');
+    }
+    return response.body.text;
+};
+
+exports.mergeQuotes = function (chuckQuote, numberQuote){
+    return {
+        chuckQuote : chuckQuote,
+        numberQuote: numberQuote
+    };
+};
+
+
 ```
 
 Here is what it looks like
