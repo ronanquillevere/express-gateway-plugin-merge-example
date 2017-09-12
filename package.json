@@ -1,9 +1,9 @@
 {
     "name": "express-gateway-plugin-merge-example",
-    "version": "0.0.17",
+    "version": "0.0.18",
     "description": "Custom policy to merge 2 api calls",
     "main": "dist/merge-example-policy.cjs.js",
-    "files":[
+    "files": [
         "dist/merge-example-policy.cjs.js"
     ],
     "scripts": {
