@@ -14,6 +14,6 @@ export default {
         //,uglify()
     ],
     targets: [
-        { dest: 'dist/policy.cjs.js', format: 'cjs' }
+        { dest: 'dist/merge-example-policy.cjs.js', format: 'cjs' }
       ]
 };
