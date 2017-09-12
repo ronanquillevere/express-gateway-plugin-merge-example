@@ -1,5 +1,5 @@
 /*eslint no-console: "warn"*/
-import policy from './policies/merge-example-policy';
+import policy from './merge-example-policy';
 
 export default {
   version: 'v1.0', //plugin engine version

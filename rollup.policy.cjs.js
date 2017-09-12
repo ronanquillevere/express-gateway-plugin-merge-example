@@ -5,7 +5,7 @@ import uglify from 'rollup-plugin-uglify';
 import resolve from 'rollup-plugin-node-resolve';
 
 export default {
-    entry: 'index.js',
+    entry: 'src/main.js',
     moduleName: 'mergeExamplePolicy',
     plugins: [
         resolve()
