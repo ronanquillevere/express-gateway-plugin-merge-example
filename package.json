@@ -1,11 +1,8 @@
 {
     "name": "express-gateway-plugin-merge-example",
-    "version": "0.0.15",
+    "version": "0.0.16",
     "description": "Custom policy to merge 2 api calls",
     "main": "dist/merge-example-policy.cjs.js",
-    "files": [
-        "dist/merge-example-policy.cjs.js"
-    ],
     "scripts": {
         "test": "npm run _transpile-test && mocha",
         "_transpile-test": "rollup -c rollup.test.es.js",
