@@ -14,64 +14,21 @@ Note that my intention was just to test the plugin system of express-gateway, no
 `{chuckQuote : quote1, numberQuote: quote2}`
 
 
-policy code
-
-```javascript
-request
-.get('http://api.chucknorris.io/jokes/random')
-.set('Content-Type', 'application/json')
-.end((err, r) => {
-    if (err || !r.ok) {
-        console.error(`problem with request1: ${err}`);
-        next();
-    } else {
-        let chuckQuote = logic.extractChuckQuote(r);
-
-        request
-        .get(`http://numbersapi.com/${chuckQuote.length}`)
-        .set('Content-Type', 'application/json')
-        .end((err, r2) => {
-            if (err || !r2.ok) {
-                console.error(`problem with request2: ${err}`);
-                next();
-            } else {
-                let numberQuote = logic.extractNumberQuote(r2);
-                res.send(logic.mergeQuotes(chuckQuote,numberQuote));
-            }
-        });
-    }
-});
-
-
-//policy-logic.js
-exports.extractChuckQuote = function (response) {
-    if (!response || !response.body || !response.body.value){
-        throw new Error ('Cannot extract Chuck Norris quote ');
-    }
-    return response.body.value;
-};
-
-exports.extractNumberQuote = function (response) {
-    if (!response || !response.body || !response.body.text){
-        throw new Error ('Cannot extract number quote ');
-    }
-    return response.body.text;
-};
-
-exports.mergeQuotes = function (chuckQuote, numberQuote){
-    return {
-        chuckQuote : chuckQuote,
-        numberQuote: numberQuote
-    };
-};
-
-
-```
-
 Here is what it looks like
 
 ![screenshot](./gfx/screenshot-ui.png)
 
+## ES6 and policy code bundling
+
+Code is written in ES6 and bundled using [rollup](https://github.com/rollup/rollup). The config is kind of tricky because of superagent issues. But this is not really the concern of this example !
+
+To bundle (generate) the policy code, simply run
+
+`npm run build`
+
+This will create the following file `dist/merge-example-policy.cjs.js` which is the plugin policy code.
+
+I probably could use webpack as well, but I have never used it :)
 
 ## How to execute it inside express-gateway
 

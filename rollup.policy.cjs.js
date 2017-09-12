@@ -5,7 +5,7 @@ import babelrc from 'babelrc-rollup';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
 import json from 'rollup-plugin-json';
-import replace from 'rollup-plugin-re'
+import replace from 'rollup-plugin-re';
 
 export default {
     input: 'src/main.js',
