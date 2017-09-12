@@ -1,7 +1,10 @@
-module.exports = {
+/*eslint no-console: "warn"*/
+import policy from './policies/merge-example-policy';
+
+export default {
   version: 'v1.0', //plugin engine version
   init: function (pluginContext) {
-    pluginContext.registerPolicy(require('./policies/merge-example-policy'));
+    pluginContext.registerPolicy(policy);
     console.log('merge-example-policy registered');
 
     pluginContext.eventBus.on('hot-reload', function ({ type, newConfig }) {

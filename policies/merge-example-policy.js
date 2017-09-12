@@ -1,7 +1,7 @@
-const request = require('superagent');
-const logic = require('./policy-logic.js');
+import 'superagent';
+import * as logic from './policy-logic';
 
-module.exports = {
+export default {
     name: 'merge-example',
     policy: (actionParams) => {
         return (req, res, next) => {

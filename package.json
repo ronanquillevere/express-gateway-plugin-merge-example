@@ -2,10 +2,11 @@
     "name": "express-gateway-plugin-merge-example",
     "version": "0.0.12",
     "description": "Custom policy to merge 2 api calls",
-    "main": "index.js",
+    "main": "/dist/policy.cjs.js",
     "scripts": {
         "test": "npm run _transpile-test && mocha",
-        "_transpile-test": "rollup -c rollup.test.es.js"
+        "_transpile-test": "rollup -c rollup.test.es.js",
+        "build": "rollup -c rollup.policy.cjs.js"
     },
     "nyc": {
         "reporter": [
@@ -23,7 +24,7 @@
         "babel-preset-es2015-rollup": "^3.0.0",
         "babelrc-rollup": "^3.0.0",
         "chai": "^3.5.0",
-        "mocha": "^3.2.0",
+        "mocha": "^3.5.3",
         "nyc": "^10.1.2",
         "rollup": "^0.41.4",
         "rollup-plugin-babel": "^2.7.1",
