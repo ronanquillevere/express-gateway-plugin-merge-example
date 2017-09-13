@@ -13,6 +13,7 @@ Note that my intention was just to test the plugin system of express-gateway, no
 - Return javascript object with the 2 quotes to caller, does not call next(), with following format
 `{chuckQuote : quote1, numberQuote: quote2}`
 
+![flow](./gfx/merge-example-policy.png)
 
 Here is what it looks like
 
