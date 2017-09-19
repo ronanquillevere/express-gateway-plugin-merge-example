@@ -1,7 +1,7 @@
 /* eslint-env node, mocha */
 /* global expect*/
 
-import * as logic from '../src/policy-logic';
+import * as Utils from '../src/policy-helpers';
 
 describe('Test-merge-example-policy', function () {
     'use strict';
@@ -32,7 +32,7 @@ describe('Test-merge-example-policy', function () {
         };
 
         // When
-        let q = logic.extractChuckQuote(response);
+        let q = Utils.extractChuckQuote(response);
 
         // Then
         expect(q).to.equal(quote);
