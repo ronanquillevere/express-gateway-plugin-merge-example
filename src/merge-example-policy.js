@@ -1,5 +1,6 @@
 import Request from 'superagent';
-import * as logic from './policy-logic';
+import * as Utils from './policy-helpers';
+import merge from './policy-code';
 
 export default {
     name: 'merge-example',
@@ -9,24 +10,8 @@ export default {
             console.log('executing policy with ES6 code of merge-example plugin', actionParams);
             //res.send('{success:true}');
 
-            Request
-            .get('http://api.chucknorris.io/jokes/random')
-            .set('Content-Type', 'application/json')
-            .end((err, r) => {
-                logic.simpleErrorHandling(err, r, next);
-
-                const chuckQuote = logic.extractChuckQuote(r);
-
-                Request
-                .get(`http://numbersapi.com/${chuckQuote.length}`)
-                .set('Content-Type', 'application/json')
-                .end((err2, r2) => {
-                    logic.simpleErrorHandling(err2, r2, next);
-
-                    const numberQuote = logic.extractNumberQuote(r2);
-                    res.send(logic.mergeQuotes(chuckQuote,numberQuote));
-                });
-            });
+            //All dependencies are injected for easier testing
+            merge(req, res, next, Request, Utils);
         };
     }
 };
